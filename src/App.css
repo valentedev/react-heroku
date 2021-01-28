@@ -1,0 +1,70 @@
+.App {
+  /* background-color: #60467e; */
+  background-color: teal;
+  padding: 5px 10px 0 10px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+  min-width: 300px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.logon-items {
+  padding: 0 5px 5px 5px;
+  margin: 0 5px 5px 5px;
+}
+
+input {
+  padding: 5px 0 5px 0;
+  margin: 0 5px 15px 5px;
+  border: none;
+  width: 220px;
+  background-color: inherit;
+  color: white;
+  border: solid 0.2px white;
+  border-bottom: 1px solid white;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+}
+input:focus {
+  outline: transparent;
+  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
+}
+
+input[email] {
+  text-transform: lowercase;
+}
+
+input::placeholder {
+  color: white;
+}
+
+button {
+  padding: 8px;
+  margin: 5px;
+  background-color: inherit;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 70%;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
