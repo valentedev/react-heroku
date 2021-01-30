@@ -1,6 +1,15 @@
-const LogOn = ({ usuario, logado, setLogado, mudarSenha, setMudarSenha }) => {
+const LogOn = ({
+  usuario,
+  setUsuario,
+  logado,
+  setLogado,
+  mudarSenha,
+  setMudarSenha,
+}) => {
   const logadoFalse = () => {
     setLogado(logado === false);
+    setUsuario({ ...usuario, nome: "", sobrenome: "", email: "", senha: "" });
+    window.localStorage.removeItem("session-token");
   };
 
   const alterarSenha = () => {

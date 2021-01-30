@@ -6,11 +6,11 @@ import MudarSenha from "./components/MudarSenha";
 import Registrar from "./components/Registrar";
 
 function App() {
-  const [logado, setLogado] = useState(false);
+  const [logado, setLogado] = useState(true);
   const [mudarSenha, setMudarSenha] = useState(false);
   const [registrar, setRegistrar] = useState(false);
   const [usuario, setUsuario] = useState({
-    nome: "Rodrigo",
+    nome: "",
     sobrenome: "",
     email: "",
     senha: "",
@@ -27,8 +27,6 @@ function App() {
               setUsuario={setUsuario}
               logado={logado}
               setLogado={setLogado}
-              registrar={registrar}
-              setRegistrar={setRegistrar}
               mudarSenha={mudarSenha}
               setMudarSenha={setMudarSenha}
             />

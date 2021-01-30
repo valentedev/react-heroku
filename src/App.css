@@ -63,6 +63,11 @@ button:hover {
   text-decoration: underline;
 }
 
+button:disabled {
+  text-decoration: none;
+  cursor: not-allowed;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
