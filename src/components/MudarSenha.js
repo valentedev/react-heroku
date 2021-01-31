@@ -4,14 +4,15 @@ const MudarSenha = ({ usuario, setUsuario, mudarSenha, setMudarSenha }) => {
   const [verSenha, setVerSenha] = useState(true);
   const { senha, confirmaSenha } = usuario;
   const fetchMudaSenha = async () => {
-    const res = await fetch("http://localhost:8080/api/pedirnovasenha", {
+    const res = await fetch("http://localhost:8080/api/mudarsenha", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${window.localStorage.getItem("session-token")}`,
+        // Authorization: `Bearer ${window.localStorage.getItem("session-token")}`,
       },
       body: JSON.stringify({
+        token: window.localStorage.getItem("session-token"),
         email: usuario.email,
         senha: usuario.senha,
       }),
@@ -23,7 +24,12 @@ const MudarSenha = ({ usuario, setUsuario, mudarSenha, setMudarSenha }) => {
   const onSubmit = e => {
     e.preventDefault();
     fetchMudaSenha();
-    //setUsuario(usuario === { nome: "", email: "" });
+    setUsuario({
+      ...usuario,
+      senha: "",
+      confirmaSenha: "",
+    });
+    setMudarSenha(mudarSenha === false);
   };
   const onChange = e => {
     const target = e.target;
