@@ -9,7 +9,6 @@ const MudarSenha = ({ usuario, setUsuario, mudarSenha, setMudarSenha }) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${window.localStorage.getItem("session-token")}`,
       },
       body: JSON.stringify({
         token: window.localStorage.getItem("session-token"),

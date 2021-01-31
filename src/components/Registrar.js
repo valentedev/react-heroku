@@ -1,9 +1,27 @@
 const Registrar = ({ registrar, setRegistrar, usuario, setUsuario }) => {
   const { nome, sobrenome, email, senha, confirmaSenha } = usuario;
+  const fetchRegistrar = async () => {
+    const res = await fetch("http://localhost:8080/api/cadastro", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome: usuario.nome,
+        sobrenome: usuario.sobrenome,
+        email: usuario.email,
+        senha: usuario.senha,
+      }),
+    });
+    const data = await res.json();
+    // setMudarSenha(mudarSenha === false);
+    console.log(data);
+  };
   const onSubmit = e => {
     e.preventDefault();
-    console.log("submitted");
-    //setUsuario(usuario === { nome: "", email: "" });
+    fetchRegistrar();
+    setRegistrar(registrar === false);
   };
   const onChange = e => {
     const target = e.target;
@@ -57,10 +75,10 @@ const Registrar = ({ registrar, setRegistrar, usuario, setUsuario }) => {
         <button type="submit" className="logon-items">
           OK
         </button>
-        <button type="submit" className="logon-items" onClick={Cancelar}>
-          Cancelar
-        </button>
       </form>
+      <button type="submit" className="logon-items" onClick={Cancelar}>
+        Cancelar
+      </button>
     </>
   );
 };
