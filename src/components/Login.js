@@ -1,4 +1,4 @@
-const Login = ({ usuario, setUsuario, logado, setLogado }) => {
+const Login = ({ usuario, setUsuario, logado, setLogado, token, setToken }) => {
   const { email, senha } = usuario;
 
   const fetchUsuario = async () => {

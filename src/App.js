@@ -4,11 +4,14 @@ import LogOff from "./components/LogOff";
 import LogOn from "./components/LogOn";
 import MudarSenha from "./components/MudarSenha";
 import Registrar from "./components/Registrar";
+//import Login from "./components/Login";
+import tokenOK from "./components/TokenOK";
 
 function App() {
   const [logado, setLogado] = useState(false);
   const [mudarSenha, setMudarSenha] = useState(false);
   const [registrar, setRegistrar] = useState(false);
+  //const [token, setToken] = useState(false);
   const [usuario, setUsuario] = useState({
     nome: "",
     sobrenome: "",
@@ -17,19 +20,31 @@ function App() {
     confirmaSenha: "",
   });
 
+  // const tokenOK = () => {
+  //   if (window.localStorage.getItem("session-token") === null) {
+  //     setToken(null);
+  //   }
+  // };
+
   return (
     <div className="App container">
       {(() => {
         if (logado && !mudarSenha) {
+          if (!tokenOK) {
+            console.log("Olá");
+            //setLogado(logado === true);
+          }
           return (
-            <LogOn
-              usuario={usuario}
-              setUsuario={setUsuario}
-              logado={logado}
-              setLogado={setLogado}
-              mudarSenha={mudarSenha}
-              setMudarSenha={setMudarSenha}
-            />
+            <>
+              <LogOn
+                usuario={usuario}
+                setUsuario={setUsuario}
+                logado={logado}
+                setLogado={setLogado}
+                mudarSenha={mudarSenha}
+                setMudarSenha={setMudarSenha}
+              />
+            </>
           );
         } else if (logado && mudarSenha) {
           return (
@@ -62,6 +77,8 @@ function App() {
           );
         }
       })()}
+
+      {/* {(() => )()} */}
     </div>
   );
 }
