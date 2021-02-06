@@ -3,12 +3,14 @@ import AuthContext from "../context/context";
 
 const LogOn = props => {
   const authContext = useContext(AuthContext);
-  const { logout, mudarSenha, usuario } = authContext;
+  const { logout, mudarSenhaTrue, usuario } = authContext;
 
   return (
     <>
       <div className="container">
-        <h4 className="logon-items">Olá {usuario.nome}!</h4>
+        <h4 className="logon-items">
+          Olá {usuario.nome + " " + usuario.sobrenome}!
+        </h4>
         <button
           onClick={() => {
             logout();
@@ -20,7 +22,7 @@ const LogOn = props => {
         <button
           className="logon-items"
           onClick={() => {
-            mudarSenha();
+            mudarSenhaTrue();
           }}
         >
           alterar senha

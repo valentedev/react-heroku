@@ -1,34 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../context/context";
 
-const MudarSenha = ({ usuario, setUsuario, mudarSenha, setMudarSenha }) => {
+const MudarSenha = props => {
+  const authContext = useContext(AuthContext);
+  const { mudarSenha, mudarSenhaFalse } = authContext;
   const [verSenha, setVerSenha] = useState(true);
+  const [usuario, setUsuario] = useState({ senha: "", confirmaSenha: "" });
   const { senha, confirmaSenha } = usuario;
-  const fetchMudaSenha = async () => {
-    const res = await fetch("http://localhost:8080/api/mudarsenha", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("session-token"),
-        email: usuario.email,
-        senha: usuario.senha,
-      }),
-    });
-    const data = await res.json();
-    setMudarSenha(mudarSenha === false);
-    console.log(data);
-  };
+
   const onSubmit = e => {
     e.preventDefault();
-    fetchMudaSenha();
-    setUsuario({
-      ...usuario,
-      senha: "",
-      confirmaSenha: "",
-    });
-    setMudarSenha(mudarSenha === false);
+    mudarSenha({ senha });
+    mudarSenhaFalse();
   };
   const onChange = e => {
     const target = e.target;
@@ -38,7 +21,7 @@ const MudarSenha = ({ usuario, setUsuario, mudarSenha, setMudarSenha }) => {
   };
 
   const Cancelar = () => {
-    setMudarSenha(mudarSenha === false);
+    mudarSenhaFalse();
   };
 
   const toggleVerSenha = () => {

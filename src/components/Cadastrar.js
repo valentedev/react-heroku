@@ -1,27 +1,22 @@
-const Registrar = ({ registrar, setRegistrar, usuario, setUsuario }) => {
-  const { nome, sobrenome, email, senha, confirmaSenha } = usuario;
-  const fetchRegistrar = async () => {
-    const res = await fetch("http://localhost:8080/api/cadastro", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nome: usuario.nome,
-        sobrenome: usuario.sobrenome,
-        email: usuario.email,
-        senha: usuario.senha,
-      }),
-    });
-    const data = await res.json();
-    // setMudarSenha(mudarSenha === false);
-    console.log(data);
-  };
+import { useContext, useState } from "react";
+import AuthContext from "../context/context";
+
+const Cadastrar = props => {
+  const authContext = useContext(AuthContext);
+  const { cadastrar, cadastrarFalse } = authContext;
+  const [usuario, setUsuario] = useState({
+    senha: "",
+    confirmaSenha: "",
+    nome: "",
+    sobrenome: "",
+    email: "",
+  });
+  const { senha, confirmaSenha, nome, sobrenome, email } = usuario;
+
   const onSubmit = e => {
     e.preventDefault();
-    fetchRegistrar();
-    setRegistrar(registrar === false);
+    cadastrar({ senha, nome, sobrenome, email });
+    cadastrarFalse();
   };
   const onChange = e => {
     const target = e.target;
@@ -30,7 +25,7 @@ const Registrar = ({ registrar, setRegistrar, usuario, setUsuario }) => {
     setUsuario({ ...usuario, [name]: value });
   };
   const Cancelar = () => {
-    setRegistrar(registrar === false);
+    cadastrarFalse();
   };
 
   return (
@@ -83,4 +78,4 @@ const Registrar = ({ registrar, setRegistrar, usuario, setUsuario }) => {
   );
 };
 
-export default Registrar;
+export default Cadastrar;

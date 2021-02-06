@@ -13,7 +13,6 @@ const Login = props => {
   const onSubmit = e => {
     e.preventDefault();
     login({ email, senha });
-    console.log("login enviado");
   };
 
   const onChange = e => {

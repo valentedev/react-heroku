@@ -1,27 +1,15 @@
+import { useContext } from "react";
+import AuthContext from "../context/context";
 import Login from "./Login";
 
-const LogOff = ({
-  usuario,
-  logado,
-  setLogado,
-  setUsuario,
-  registrar,
-  setRegistrar,
-}) => {
-  const Cadastrar = () => {
-    setRegistrar(registrar === false);
-  };
+const LogOff = props => {
+  const authContext = useContext(AuthContext);
+  const { cadastrarTrue } = authContext;
+
   return (
     <div className="container">
-      <Login
-        usuario={usuario}
-        logado={logado}
-        setLogado={setLogado}
-        setUsuario={setUsuario}
-        registrar={registrar}
-        setRegistrar={setRegistrar}
-      />
-      <button className="logon-items" onClick={Cadastrar}>
+      <Login />
+      <button className="logon-items" onClick={cadastrarTrue}>
         Cadastrar
       </button>
     </div>
