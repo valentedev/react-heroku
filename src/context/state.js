@@ -39,7 +39,7 @@ const AuthState = props => {
 
     try {
       fetch("http://localhost:8080/api/login", config)
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data =>
           dispatch({
             type: LOGIN_OK,
@@ -73,7 +73,7 @@ const AuthState = props => {
 
     try {
       fetch("http://localhost:8080/api/mudarsenha", config)
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => dispatch({ type: MUDAR_SENHA_OK, payload: data }));
     } catch (err) {
       dispatch({ type: MUDAR_SENHA_FAIL, payload: err });
@@ -103,8 +103,8 @@ const AuthState = props => {
       body: JSON.stringify(dadosForm),
     };
     try {
-      fetch("http://localhost:8080/api/cadastrar", config)
-        .then(response => response.json())
+      fetch("http://localhost:8080/api/cadastro", config)
+        .then(res => res.json())
         .then(data => dispatch({ type: CADASTRAR_OK, payload: data }));
     } catch (err) {
       dispatch({ type: CADASTRAR_FAIL, payload: err });

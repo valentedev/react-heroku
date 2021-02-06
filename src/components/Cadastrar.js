@@ -67,9 +67,15 @@ const Cadastrar = props => {
           name="confirmaSenha"
           value={confirmaSenha}
         />
-        <button type="submit" className="logon-items">
-          OK
-        </button>
+        {senha === confirmaSenha && senha !== "" && confirmaSenha !== "" ? (
+          <button type="submit" className="logon-items">
+            OK
+          </button>
+        ) : (
+          <button type="submit" className="logon-items" disabled>
+            OK
+          </button>
+        )}
       </form>
       <button type="submit" className="logon-items" onClick={Cancelar}>
         Cancelar
