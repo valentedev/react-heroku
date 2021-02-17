@@ -5,19 +5,24 @@ const MudarSenha = props => {
   const authContext = useContext(AuthContext);
   const { mudarSenha, mudarSenhaFalse } = authContext;
   const [verSenha, setVerSenha] = useState(true);
-  const [usuario, setUsuario] = useState({ senha: "", confirmaSenha: "" });
-  const { senha, confirmaSenha } = usuario;
+  const [usuarioComp, setUsuarioComp] = useState({
+    senha: "",
+    confirmaSenha: "",
+  });
+  const { senha, confirmaSenha } = usuarioComp;
+  //const { email } = usuario;
+  const token = localStorage.getItem("session-token");
 
   const onSubmit = e => {
     e.preventDefault();
-    mudarSenha({ senha });
+    mudarSenha({ senha, token });
     mudarSenhaFalse();
   };
   const onChange = e => {
     const target = e.target;
     const name = target.name;
     const value = target.value;
-    setUsuario({ ...usuario, [name]: value });
+    setUsuarioComp({ ...usuarioComp, [name]: value });
   };
 
   const Cancelar = () => {

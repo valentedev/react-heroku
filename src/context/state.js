@@ -14,6 +14,7 @@ import {
   MUDAR_SENHA_FAIL,
   MUDAR_SENHA_TRUE,
   MUDAR_SENHA_FALSE,
+  ALERTA_FALSE,
 } from "../types";
 
 const AuthState = props => {
@@ -22,6 +23,8 @@ const AuthState = props => {
     usuario: null,
     cadastrarState: false,
     mudarSenhaState: false,
+    alerta: false,
+    alertaTexto: "",
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -92,6 +95,10 @@ const AuthState = props => {
     dispatch({ type: CADASTRAR_FALSE });
   };
 
+  const alertaFalse = () => {
+    dispatch({ type: ALERTA_FALSE });
+  };
+
   // cadastrar
   const cadastrar = async dadosForm => {
     const config = {
@@ -114,11 +121,12 @@ const AuthState = props => {
   return (
     <AuthContext.Provider
       value={{
-        //token: state.token,
         autenticado: state.autenticado,
         usuario: state.usuario,
         cadastrarState: state.cadastrarState,
         mudarSenhaState: state.mudarSenhaState,
+        alerta: state.alerta,
+        alertaTexto: state.alertaTexto,
         logout,
         login,
         cadastrar,
@@ -127,6 +135,7 @@ const AuthState = props => {
         mudarSenha,
         mudarSenhaFalse,
         mudarSenhaTrue,
+        alertaFalse,
       }}
     >
       {props.children}

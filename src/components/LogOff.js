@@ -12,6 +12,7 @@ const LogOff = props => {
       <button className="logon-items" onClick={cadastrarTrue}>
         Cadastrar
       </button>
+      <button className="logon-items">Pedir nova senha</button>
     </div>
   );
 };

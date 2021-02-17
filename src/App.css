@@ -68,6 +68,21 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.alerta {
+  padding-left: 10px;
+  margin: 0 5px 10px 5px;
+  background-color: seagreen;
+  border-radius: 4px;
+  font-size: 80%;
+  outline: transparent;
+}
+
+.alerta button {
+  padding-left: 8px;
+  margin: 0;
+  font-size: inherit;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

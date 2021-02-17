@@ -4,6 +4,7 @@ import LogOn from "./LogOn";
 import MudarSenha from "./MudarSenha";
 import Cadastrar from "./Cadastrar";
 import LogOff from "./LogOff";
+//import tokenOK from "./TokenOK";
 
 const Layout = () => {
   const authContext = useContext(AuthContext);

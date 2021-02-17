@@ -1,16 +1,17 @@
 import { useContext } from "react";
 import AuthContext from "../context/context";
+import NomeToken from "./TokenNome";
+import Alerta from "./Alerta";
 
 const LogOn = props => {
   const authContext = useContext(AuthContext);
-  const { logout, mudarSenhaTrue, usuario } = authContext;
+  const { logout, mudarSenhaTrue, alerta } = authContext;
 
   return (
     <>
       <div className="container">
-        <h4 className="logon-items">
-          Olá {usuario.nome + " " + usuario.sobrenome}!
-        </h4>
+        {alerta && <Alerta />}
+        <h4 className="logon-items">Olá {NomeToken}!</h4>
         <button
           onClick={() => {
             logout();

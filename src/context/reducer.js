@@ -6,19 +6,24 @@ import {
   MUDAR_SENHA_TRUE,
   CADASTRAR_TRUE,
   CADASTRAR_FALSE,
+  LOGIN_FAIL,
+  ALERTA_FALSE,
 } from "../types";
 
 export default function Reducer(state, action) {
   switch (action.type) {
     case LOGIN_OK:
-      localStorage.setItem("session-token", action.payload.Token);
+      localStorage.setItem("session-token", action.payload);
       return {
         ...state,
         ...action.payload,
         autenticado: true,
-        usuario: action.payload.Usuario,
-        token: action.payload.Token,
+        token: action.payload,
       };
+    case LOGIN_FAIL:
+      console.log("Login falhou");
+
+      break;
     case LOGOUT_OK:
       localStorage.removeItem("session-token");
       return {
@@ -28,10 +33,14 @@ export default function Reducer(state, action) {
         autenticado: false,
         usuario: null,
       };
+
     case MUDAR_SENHA_OK:
       return {
         ...state,
+        ...action.payload,
         mudarSenhaState: false,
+        alerta: true,
+        alertaTexto: action.payload,
       };
     case MUDAR_SENHA_TRUE:
       return {
@@ -52,6 +61,12 @@ export default function Reducer(state, action) {
       return {
         ...state,
         cadastrarState: false,
+      };
+    case ALERTA_FALSE:
+      return {
+        ...state,
+        alerta: false,
+        alertaTexto: "",
       };
     default:
       return state;
