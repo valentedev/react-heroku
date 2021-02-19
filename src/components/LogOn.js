@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../context/context";
-import NomeToken from "./TokenNome";
+import NomeToken from "../utils/TokenNome";
 import Alerta from "./Alerta";
 
 const LogOn = props => {

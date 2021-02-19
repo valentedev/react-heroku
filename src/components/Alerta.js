@@ -14,7 +14,7 @@ const Alerta = () => {
       <div>
         {alertaTexto}
         <button type="submit" onClick={Fechar}>
-          <i class="fas fa-times-circle"></i>
+          <i className="fas fa-times-circle"></i>
         </button>
       </div>
     </div>

@@ -18,18 +18,23 @@ export default function Reducer(state, action) {
         ...state,
         ...action.payload,
         autenticado: true,
-        token: action.payload,
+        alerta: false,
+        alertaTexto: "",
       };
     case LOGIN_FAIL:
-      console.log("Login falhou");
-
-      break;
+      return {
+        ...state,
+        ...action.payload,
+        autenticado: false,
+        usuario: null,
+        alerta: true,
+        alertaTexto: action.payload,
+      };
     case LOGOUT_OK:
       localStorage.removeItem("session-token");
       return {
         ...state,
         ...action.payload,
-        token: null,
         autenticado: false,
         usuario: null,
       };

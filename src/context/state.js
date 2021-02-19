@@ -40,21 +40,22 @@ const AuthState = props => {
       body: JSON.stringify(dadosForm),
     };
 
-    try {
-      fetch("http://localhost:8080/api/login", config)
-        .then(res => res.json())
-        .then(data =>
+    fetch("http://localhost:8080/api/login", config)
+      .then(result => {
+        if (!result.ok) throw result;
+        return result.json();
+      })
+      .then(result => {
+        dispatch({ type: LOGIN_OK, payload: result });
+      })
+      .catch(err => {
+        err.json().then(body => {
           dispatch({
-            type: LOGIN_OK,
-            payload: data,
-          })
-        );
-    } catch (err) {
-      dispatch({
-        type: LOGIN_FAIL,
-        payload: err,
+            type: LOGIN_FAIL,
+            payload: body,
+          });
+        });
       });
-    }
   };
 
   // logout
