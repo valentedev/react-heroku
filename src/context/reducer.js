@@ -2,6 +2,7 @@ import {
   LOGIN_OK,
   LOGOUT_OK,
   MUDAR_SENHA_OK,
+  MUDAR_SENHA_FAIL,
   MUDAR_SENHA_FALSE,
   MUDAR_SENHA_TRUE,
   CADASTRAR_TRUE,
@@ -44,6 +45,15 @@ export default function Reducer(state, action) {
         ...state,
         ...action.payload,
         mudarSenhaState: false,
+        alerta: true,
+        alertaTexto: action.payload,
+      };
+    case MUDAR_SENHA_FAIL:
+      return {
+        ...state,
+        ...action.payload,
+        autenticado: false,
+        usuario: null,
         alerta: true,
         alertaTexto: action.payload,
       };

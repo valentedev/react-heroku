@@ -75,14 +75,24 @@ const AuthState = props => {
       body: JSON.stringify(dadosForm),
     };
 
-    try {
-      fetch("http://localhost:8080/api/mudarsenha", config)
-        .then(res => res.json())
-        .then(data => dispatch({ type: MUDAR_SENHA_OK, payload: data }));
-    } catch (err) {
-      dispatch({ type: MUDAR_SENHA_FAIL, payload: err });
-    }
+    fetch("http://localhost:8080/api/mudarsenha", config)
+      .then(result => {
+        if (!result.ok) throw result;
+        return result.json();
+      })
+      .then(result => {
+        dispatch({ type: MUDAR_SENHA_OK, payload: result });
+      })
+      .catch(err => {
+        err.json().then(body => {
+          dispatch({
+            type: MUDAR_SENHA_FAIL,
+            payload: body,
+          });
+        });
+      });
   };
+
   const mudarSenhaTrue = () => {
     dispatch({ type: MUDAR_SENHA_TRUE });
   };
