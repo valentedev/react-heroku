@@ -53,7 +53,7 @@ const AuthState = props => {
       body: JSON.stringify(dadosForm),
     };
 
-    fetch("http://frozen-stream-68517.herokuapp.com/api/login", config)
+    fetch("https://frozen-stream-68517.herokuapp.com/admin/api/login", config)
       .then(result => {
         if (!result.ok) throw result;
         return result.json();
@@ -88,7 +88,7 @@ const AuthState = props => {
       body: JSON.stringify(dadosForm),
     };
 
-    fetch("http://frozen-stream-68517.herokuapp.com/api/mudarsenha", config)
+    fetch("https://frozen-stream-68517.herokuapp.com/api/mudarsenha", config)
       .then(result => {
         if (!result.ok) throw result;
         return result.json();
@@ -134,7 +134,7 @@ const AuthState = props => {
       body: JSON.stringify(dadosForm),
     };
     try {
-      fetch("http://frozen-stream-68517.herokuapp.com/api/cadastro", config)
+      fetch("https://frozen-stream-68517.herokuapp.com/api/cadastro", config)
         .then(res => res.json())
         .then(data => dispatch({ type: CADASTRAR_OK, payload: data }));
     } catch (err) {
