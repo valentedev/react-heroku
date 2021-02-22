@@ -4,23 +4,33 @@ import LogOn from "./LogOn";
 import MudarSenha from "./MudarSenha";
 import Cadastrar from "./Cadastrar";
 import LogOff from "./LogOff";
-//import tokenOK from "./TokenOK";
 
 const Layout = () => {
   const authContext = useContext(AuthContext);
-  const { autenticado, mudarSenhaState, cadastrarState } = authContext;
-
+  const { mudarSenhaState, cadastrarState, logout } = authContext;
   return (
     <div className="App container">
       {(() => {
-        if (autenticado && !mudarSenhaState) {
-          return <LogOn />;
-        } else if (autenticado && mudarSenhaState) {
-          return <MudarSenha />;
-        } else if (!autenticado && cadastrarState) {
-          return <Cadastrar />;
+        const token = localStorage.getItem("session-token");
+        if (token) {
+          const parsedToken = JSON.parse(atob(token.split(".")[1])).exp;
+          const tokenTime = new Date(parsedToken * 1000);
+          const now = new Date().getTime();
+          if (tokenTime > now) {
+            if (!mudarSenhaState) {
+              return <LogOn />;
+            } else {
+              return <MudarSenha />;
+            }
+          } else {
+            logout();
+          }
         } else {
-          return <LogOff />;
+          if (!cadastrarState) {
+            return <LogOff />;
+          } else {
+            return <Cadastrar />;
+          }
         }
       })()}
     </div>

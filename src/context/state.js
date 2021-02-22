@@ -15,11 +15,13 @@ import {
   MUDAR_SENHA_TRUE,
   MUDAR_SENHA_FALSE,
   ALERTA_FALSE,
+  AUTENTICADO_TRUE,
+  AUTENTICADO_FALSE,
 } from "../types";
 
 const AuthState = props => {
   const initialState = {
-    autenticado: false,
+    autenticadoState: false,
     usuario: null,
     cadastrarState: false,
     mudarSenhaState: false,
@@ -28,6 +30,17 @@ const AuthState = props => {
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
+
+  //autenticado
+  const autenticadoTrue = () =>
+    dispatch({
+      type: AUTENTICADO_TRUE,
+    });
+
+  const autenticadoFalse = () =>
+    dispatch({
+      type: AUTENTICADO_FALSE,
+    });
 
   // login
   const login = async dadosForm => {
@@ -132,7 +145,7 @@ const AuthState = props => {
   return (
     <AuthContext.Provider
       value={{
-        autenticado: state.autenticado,
+        autenticadoState: state.autenticadoState,
         usuario: state.usuario,
         cadastrarState: state.cadastrarState,
         mudarSenhaState: state.mudarSenhaState,
@@ -147,6 +160,8 @@ const AuthState = props => {
         mudarSenhaFalse,
         mudarSenhaTrue,
         alertaFalse,
+        autenticadoTrue,
+        autenticadoFalse,
       }}
     >
       {props.children}

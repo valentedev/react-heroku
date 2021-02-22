@@ -1,4 +1,6 @@
 import {
+  AUTENTICADO_TRUE,
+  AUTENTICADO_FALSE,
   LOGIN_OK,
   LOGOUT_OK,
   MUDAR_SENHA_OK,
@@ -13,6 +15,16 @@ import {
 
 export default function Reducer(state, action) {
   switch (action.type) {
+    case AUTENTICADO_TRUE:
+      return {
+        ...state,
+        autenticadoState: true,
+      };
+    case AUTENTICADO_FALSE:
+      return {
+        ...state,
+        autenticadoState: false,
+      };
     case LOGIN_OK:
       localStorage.setItem("session-token", action.payload);
       return {
